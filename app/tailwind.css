@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-neutral-50 text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  a {
+    @apply text-primary-500 hover:text-primary-700;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-primary-900 dark:text-primary-300;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-700 text-white px-4 py-2 rounded;
+  }
+  
+  .btn-secondary {
+    @apply bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-4 py-2 rounded;
+  }
+  
+  .alert-success {
+    @apply bg-success/10 text-success border border-success rounded px-4 py-2;
+  }
+  
+  .alert-warning {
+    @apply bg-warning/10 text-warning border border-warning rounded px-4 py-2;
+  }
+  
+  .alert-error {
+    @apply bg-error/10 text-error border border-error rounded px-4 py-2;
+  }
+}
