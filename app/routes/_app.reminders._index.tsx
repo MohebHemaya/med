@@ -11,10 +11,12 @@ interface Reminder {
   _id: string;
   medicationId: string;
   medicationName: string;
+  genericName?: string;
   time: string;
   date: string;
   status: "active" | "snoozed" | "completed" | "missed";
   notes?: string;
+  instructions?: string;
 }
 
 interface GroupedReminders {
@@ -63,11 +65,13 @@ export default function RemindersPage() {
                 processed.push({
                   _id: reminder._id,
                   medicationId: med._id,
-                  medicationName: `${med.brandName} ${med.dosage}`,
+                  medicationName: med.brandName,
+                  genericName: med.genericName || "",
                   time: reminder.time,
                   date: new Date(reminder.time).toLocaleDateString(),
                   status: reminder.status || "active",
                   notes: reminder.notes,
+                  instructions: med.instructions || "",
                 });
               });
             }
@@ -213,56 +217,66 @@ export default function RemindersPage() {
                       <h2 className="text-lg font-semibold text-gray-700">
                         {new Date(date).toLocaleDateString(undefined, {
                           weekday: "long",
-                          year: "numeric",
                           month: "long",
                           day: "numeric",
+                          year: "numeric",
                         })}
                       </h2>
-                      <div className="bg-gray-50 rounded-lg overflow-hidden">
-                        <ul className="divide-y divide-gray-200">
-                          {reminders
-                            .sort(
-                              (a, b) =>
-                                new Date(a.time).getTime() -
-                                new Date(b.time).getTime()
-                            )
-                            .map((reminder) => (
-                              <li
-                                key={reminder._id}
-                                className="px-4 py-3 flex justify-between items-center hover:bg-gray-100">
-                                <div>
-                                  <div className="flex items-center space-x-3">
-                                    <span className="text-sm font-medium text-gray-900">
-                                      {new Date(
-                                        reminder.time
-                                      ).toLocaleTimeString([], {
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                      })}
-                                    </span>
-                                    <span className="font-medium text-gray-800">
-                                      {reminder.medicationName}
-                                    </span>
-                                  </div>
-                                  {reminder.notes && (
-                                    <p className="text-sm text-gray-500 mt-1">
-                                      {reminder.notes}
-                                    </p>
-                                  )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {reminders
+                          .sort(
+                            (a, b) =>
+                              new Date(a.time).getTime() -
+                              new Date(b.time).getTime()
+                          )
+                          .map((reminder) => (
+                            <div
+                              key={reminder._id}
+                              className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                              <div className="p-4">
+                                <div className="text-right text-sm text-gray-500 mb-2">
+                                  {new Date(reminder.time).toLocaleTimeString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  })}
                                 </div>
-                                <button
-                                  onClick={() =>
-                                    handleTriggerTestReminder(
-                                      reminder.medicationId,
-                                      reminder._id
-                                    )
-                                  }
-                                  className="text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded">
-                                  Test
-                                </button>
-                              </li>
-                            ))}
-                        </ul>
+                                <div className="uppercase font-bold text-gray-900">
+                                  {reminder.medicationName}
+                                </div>
+                                {reminder.genericName && (
+                                  <div className="uppercase text-sm text-gray-600">
+                                    {reminder.genericName}
+                                  </div>
+                                )}
+                                {reminder.instructions && (
+                                  <div className="mt-2 text-sm text-gray-700">
+                                    <div className="font-medium">Directions:</div> 
+                                    <div className="text-xs mt-1">{reminder.instructions}</div>
+                                  </div>
+                                )}
+                                <div className="mt-4 flex justify-between">
+                                  <button
+                                    onClick={() =>
+                                      handleTriggerTestReminder(
+                                        reminder.medicationId,
+                                        reminder._id
+                                      )
+                                    }
+                                    className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded">
+                                    Test
+                                  </button>
+                                  <div className="flex space-x-2">
+                                    <button className="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-2 py-1 rounded">
+                                      Skip
+                                    </button>
+                                    <button className="text-xs bg-green-100 hover:bg-green-200 text-green-700 px-2 py-1 rounded">
+                                      Done
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                       </div>
                     </div>
                   ))}

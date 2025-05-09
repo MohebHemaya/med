@@ -41,6 +41,10 @@ export default function Dashboard() {
     if (info?.userType === "pharmacy") {
       navigate("/pharmacy-dashboard");
     }
+    // Redirect admin users to admin dashboard
+    if (info?.userType === "admin") {
+      navigate("/admin-dashboard");
+    }
   }, [navigate]);
 
   // Fetch user medications and reminders
@@ -333,31 +337,42 @@ export default function Dashboard() {
         </div>
 
         {upcomingReminders.length > 0 ? (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {upcomingReminders.slice(0, 3).map((medication) => (
               <div
                 key={medication._id}
-                className="border border-neutral-200 rounded-lg p-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="font-semibold text-neutral-800">
-                      {medication.brandName} {medication.dosage}
-                    </h3>
-                    <p className="text-sm text-neutral-500">
-                      {medication.frequency}
-                    </p>
-                  </div>
-                  {medication.nextReminder && (
-                    <div className="text-sm text-neutral-500">
-                      Next:{" "}
-                      {new Date(medication.nextReminder).toLocaleString([], {
+                className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                <div className="p-4">
+                  <div className="text-right text-sm text-gray-500 mb-2">
+                    {medication.nextReminder && (
+                      new Date(medication.nextReminder).toLocaleString([], {
                         month: "short",
                         day: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
-                      })}
+                      })
+                    )}
+                  </div>
+                  <div className="uppercase font-bold text-gray-900">
+                    {medication.brandName}
+                  </div>
+                  {medication.genericName && (
+                    <div className="uppercase text-sm text-gray-600">
+                      {medication.genericName}
                     </div>
                   )}
+                  <div className="mt-2 text-xs text-gray-700">
+                    <div className="font-medium">Directions:</div> 
+                    <div className="text-xs mt-1">{medication.instructions}</div>
+                  </div>
+                  <div className="mt-4 flex justify-end space-x-2">
+                    <button className="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-2 py-1 rounded">
+                      Skip
+                    </button>
+                    <button className="text-xs bg-green-100 hover:bg-green-200 text-green-700 px-2 py-1 rounded">
+                      Done
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

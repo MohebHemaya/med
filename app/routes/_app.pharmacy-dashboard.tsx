@@ -58,6 +58,11 @@ export default function PharmacyDashboard() {
       navigate("/dashboard");
       return;
     }
+    // Redirect admin users to admin dashboard
+    if (info?.userType === "admin") {
+      navigate("/admin-dashboard");
+      return;
+    }
 
     // Load pharmacy dashboard data
     const loadDashboardData = async () => {

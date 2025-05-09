@@ -13,3 +13,5 @@ export default function AppLayout() {
     </AuthLayout>
   );
 }
+
+export { default as AdminDashboard } from "./admin-dashboard";

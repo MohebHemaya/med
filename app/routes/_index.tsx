@@ -25,7 +25,7 @@ export default function Index() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      <div className="relative isolate px-6 pt-14 lg:px-8 bg-primary-700">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <svg
             className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -52,10 +52,13 @@ export default function Index() {
 
         <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:py-32">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              <span className="text-indigo-600">Med</span>Track
+            <div className="flex justify-center mb-4">
+              <img src="/logo.png" alt="Med-Track Logo" className="w-16 h-16 object-contain" />
+            </div>
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              <span className="text-white">Med</span>Track
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8 text-white">
               Never miss a medication again. Track your prescriptions, set
               reminders, and get notified when it&apos;s time to take your
               medication.
@@ -63,12 +66,12 @@ export default function Index() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 to="/login"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-primary-700 shadow-sm hover:bg-primary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700">
                 Sign In
               </Link>
               <Link
                 to="/register"
-                className="text-sm font-semibold leading-6 text-gray-900">
+                className="text-sm font-semibold leading-6 text-white">
                 Create an account <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -77,16 +80,16 @@ export default function Index() {
       </div>
 
       {/* Feature Section */}
-      <div className="bg-gray-50 py-16 sm:py-24">
+      <div className="bg-primary-50 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+            <h2 className="text-base font-semibold leading-7 text-primary-700">
               Medication Management Made Easy
             </h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl font-bold tracking-tight text-primary-900 sm:text-4xl">
               Everything you need to stay on track
             </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8 text-primary-800">
               MedTrack helps you manage your medications with ease, providing
               tools to never miss a dose and stay informed about your
               treatments.
@@ -95,8 +98,8 @@ export default function Index() {
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
               <div className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                <dt className="text-base font-semibold leading-7 text-primary-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700">
                     <svg
                       className="h-6 w-6 text-white"
                       fill="none"
@@ -120,8 +123,8 @@ export default function Index() {
               </div>
 
               <div className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                <dt className="text-base font-semibold leading-7 text-primary-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700">
                     <svg
                       className="h-6 w-6 text-white"
                       fill="none"
@@ -144,8 +147,8 @@ export default function Index() {
               </div>
 
               <div className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                <dt className="text-base font-semibold leading-7 text-primary-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700">
                     <svg
                       className="h-6 w-6 text-white"
                       fill="none"
@@ -168,8 +171,8 @@ export default function Index() {
               </div>
 
               <div className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                <dt className="text-base font-semibold leading-7 text-primary-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700">
                     <svg
                       className="h-6 w-6 text-white"
                       fill="none"
